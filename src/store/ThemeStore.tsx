@@ -2,11 +2,13 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 type Theme = "light" | "dark";
+
 interface ThemeStore {
   theme: Theme;
   toggleTheme: () => void;
 }
-const useThemeStore = create<ThemeStore>()(
+
+export const useThemeStore = create<ThemeStore>()(
   persist(
     (set, get) => ({
       theme:
@@ -15,16 +17,26 @@ const useThemeStore = create<ThemeStore>()(
           ? "dark"
           : "light",
       toggleTheme: () => {
-        const newTheme = get().theme === "light" ? "dark" : ("light" as Theme);
+        const newTheme: Theme = get().theme === "light" ? "dark" : "light";
         if (typeof document !== "undefined") {
           document.documentElement.classList.toggle(
             "dark",
             newTheme === "dark"
           );
         }
+
         set({ theme: newTheme });
       },
     }),
-    { name: "theme" }
+    {
+      name: "theme",
+      onRehydrateStorage: () => (state) => {
+        if (state?.theme === "dark") {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      },
+    }
   )
 );
