@@ -23,15 +23,15 @@ export const Navbar = () => {
             <a href="/" className="relative flex items-center gap-3">
               <img src={logo} alt="EdgeAI Logo" className="w-10 h-10" />
               <div className="inline-flex text-lg font-semibold text-heading-1">
-                EdgeAI
+                Spotify
               </div>
             </a>
           </div>
 
           <div
             className="flex flex-col lg:flex-row w-full lg:justify-between lg:items-center 
-                      absolute top-full left-0 lg:static lg:top-0 bg-body lg:bg-transparent 
-                      border-x border-x-box-border lg:border-x-0 lg:h-auto h-0 overflow-hidden"
+absolute top-full left-0 lg:static lg:top-0  lg:bg-transparent 
+border-x border-x-box-border lg:border-x-0 lg:h-auto h-0 overflow-hidden bg-body"
           >
             <ul
               className="border-t border-box-border lg:border-t-0 px-6 lg:px-0 
@@ -54,7 +54,7 @@ export const Navbar = () => {
           <div className="min-w-max flex items-center gap-x-3">
             <button
               onClick={toggleTheme}
-              className="outline-hidden flex relative text-heading-2 rounded-full p-2 lg:p-3 border border-box-border cursor-pointer"
+              className="outline-hidden flex relative text-heading-1 rounded-full p-2 lg:p-3 border border-box-border cursor-pointer"
             >
               {theme === "dark" ? (
                 <svg
